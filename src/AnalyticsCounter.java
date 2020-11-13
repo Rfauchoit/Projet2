@@ -1,8 +1,11 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class AnalyticsCounter {
     private static int headacheCount;
@@ -34,28 +37,6 @@ public class AnalyticsCounter {
         /** Création d'une Hashmap pour stocker les données
          *
          */
-        Map<String, Integer> symptoms = new HashMap<>();
-        symptoms.put("fever : ", feverCount);
-        symptoms.put("dry mouth : ", dryCount);
-        symptoms.put("headache : ", headacheCount);
-        symptoms.put("rash : ", rashCount);
-        symptoms.put("inflammation : ", inflammationCount);
-        symptoms.put("tremor : ", tremorCount);
-        symptoms.put("stomach pain : ", stomachCount);
-        symptoms.put("high blood pressure : ", +highBloodCount);
-        symptoms.put("stiff neck : ", +neckCount);
-        symptoms.put("cough : ", coughCount);
-        symptoms.put("dilated pupils : ", dilPupilCount);
-        symptoms.put("insomnia : ", insomniaCount);
-        symptoms.put("constricted pupils : ", consPupilCount);
-        symptoms.put("nausea : ", nauseaCount);
-        symptoms.put("shortness of breath : ", breathCount);
-        symptoms.put("blurred vision : ", visionCount);
-        symptoms.put("low blood pressure : ", +lowBloodCount);
-        symptoms.put("arrhythmias : ", arrhythmiasCount);
-        symptoms.put("dizziness : ", dizzyCount);
-        symptoms.put("anxiety : ", anxietyCount);
-        symptoms.put("water retention : ", waterCount);
 
 
         while (line != null) {
@@ -126,32 +107,44 @@ public class AnalyticsCounter {
                 System.out.println("number of water retention: " + waterCount);
             }
             line = reader.readLine();
-
-            FileWriter writer = new FileWriter("result.out");
-
-            writer.write("arrhythmias : " + arrhythmiasCount + "\n");
-            writer.write("anxiety : " + anxietyCount + "\n");
-            writer.write("blurred vision : " + visionCount + "\n");
-            writer.write("constricted pupils : " + consPupilCount + "\n");
-            writer.write("cough : " + coughCount + "\n");
-            writer.write("dilated pupils : " + dilPupilCount + "\n");
-            writer.write("dizziness : " + dizzyCount + "\n");
-            writer.write("dry mouth : " + dryCount + "\n");
-            writer.write("fever : " + feverCount + "\n");
-            writer.write("headache : " + headacheCount + "\n");
-            writer.write("high blood pressure : " + +highBloodCount + "\n");
-            writer.write("inflammation : " + inflammationCount + "\n");
-            writer.write("insomnia : " + insomniaCount + "\n");
-            writer.write("low blood pressure : " + +lowBloodCount + "\n");
-            writer.write("nausea : " + nauseaCount + "\n");
-            writer.write("rash : " + rashCount + "\n");
-            writer.write("shortness of breath : " + breathCount + "\n");
-            writer.write("stiff neck : " + neckCount + "\n");
-            writer.write("stomach pain : " + stomachCount + "\n");
-            writer.write("tremor : " + tremorCount + "\n");
-            writer.write("water retention : " + waterCount + "\n");
-
-            writer.close();
         }
+
+        Map<String, Integer> symptoms = new HashMap<>();
+        symptoms.put("fever : ", feverCount);
+        symptoms.put("dry mouth : ", dryCount);
+        symptoms.put("headache : ", headacheCount);
+        symptoms.put("rash : ", rashCount);
+        symptoms.put("inflammation : ", inflammationCount);
+        symptoms.put("tremor : ", tremorCount);
+        symptoms.put("stomach pain : ", stomachCount);
+        symptoms.put("high blood pressure : ", highBloodCount);
+        symptoms.put("stiff neck : ", +neckCount);
+        symptoms.put("cough : ", coughCount);
+        symptoms.put("dilated pupils : ", dilPupilCount);
+        symptoms.put("insomnia : ", insomniaCount);
+        symptoms.put("constricted pupils : ", consPupilCount);
+        symptoms.put("nausea : ", nauseaCount);
+        symptoms.put("shortness of breath : ", breathCount);
+        symptoms.put("blurred vision : ", visionCount);
+        symptoms.put("low blood pressure : ", lowBloodCount);
+        symptoms.put("arrhythmias : ", arrhythmiasCount);
+        symptoms.put("dizziness : ", dizzyCount);
+        symptoms.put("anxiety : ", anxietyCount);
+        symptoms.put("water retention : ", waterCount);
+
+        FileWriter writer = new FileWriter("result.out");
+        /*for (Map.Entry<String, Integer> element : symptoms.entrySet()) {
+            writer.write(element.getKey() +" : " + element.getValue() + "\n");
+        }
+        */
+        symptoms.entrySet().forEach(element -> {
+            try {
+                writer.write(element.getKey() + " : " + element.getValue() + "\n");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        writer.close();
+
     }
 }
