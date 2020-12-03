@@ -2,9 +2,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-public interface ISymptomTreeMap {
-
-    /*static Map<String, Integer> symptomsMap(List<String> symptomsList) {
+public class CounterTreeMap implements ISymptomTreeMap {
+    static Map<String, Integer> symptomsMap(List<String> symptomsList) {
         Map<String, Integer> symptoms = new TreeMap<>();
 
         for (
@@ -20,5 +19,4 @@ public interface ISymptomTreeMap {
         }
         return symptoms;
     }
-    */
 }
