@@ -127,7 +127,7 @@ public class AnalyticsCounter {
             }
             line = reader.readLine();
 
-            FileWriter writer = new FileWriter("result.out");
+           ISymptomWriter writer = new WriteSymptomDataFromFile();
 
             writer.write("arrhythmias : " + arrhythmiasCount + "\n");
             writer.write("anxiety : " + anxietyCount + "\n");
@@ -150,8 +150,6 @@ public class AnalyticsCounter {
             writer.write("stomach pain : " + stomachCount + "\n");
             writer.write("tremor : " + tremorCount + "\n");
             writer.write("water retention : " + waterCount + "\n");
-
-            writer.close();
         }
     }
 }
