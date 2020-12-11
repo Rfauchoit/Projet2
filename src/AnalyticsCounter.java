@@ -1,14 +1,11 @@
 import java.io.IOException;
 
 /**
- * * méthode principale qui lit un fichier et le range par ordre alphabétique dans un nouveau fichier
+ * * classe qui lit une liste de symptomes et le range par ordre alphabétique dans un nouveau fichier
  *
  * @see ISymptomReader
- * @see ReadSymptomDataFromFile
- * @see CounterTreeMap
  * @see ISymptomTreeMap
  * @see ISymptomWriter
- * @see WriteSymptomDataFromFile
  */
 public class AnalyticsCounter {
 
@@ -19,10 +16,15 @@ public class AnalyticsCounter {
         countdown.generateSymptomsCountdown();
     }
 
+    /**
+     * méthode principale lisant un fichier texte "symptoms.txt", l'insert dans une TreeMap puis l'écrit dans un fichier
+     * de sortie "result.out"
+     */
     public void generateSymptomsCountdown() throws IOException {
-        ISymptomWriter writer = new WriteSymptomDataFromFile();
         ISymptomReader reader = new ReadSymptomDataFromFile(SYMPTOMS_TXT);
         ISymptomTreeMap map = new CounterTreeMap();
+        ISymptomWriter writer = new WriteSymptomDataFromFile();
+
 
         writer.write(map.symptomsMap(reader.getSymptoms()));
     }

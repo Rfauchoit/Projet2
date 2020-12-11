@@ -9,7 +9,7 @@ import java.util.TreeMap;
 public class CounterTreeMap implements ISymptomTreeMap {
 
     @Override
-    public Map<String, Integer> symptomsMap(List<String> symptomsList) throws IOException {
+    public Map<String, Integer> symptomsMap(List<String> symptomsList) {
         Map<String, Integer> symptoms = new TreeMap<>();
         for (String cle : symptomsList) {
             int ancienneValeur = 0;
